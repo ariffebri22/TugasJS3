@@ -1,15 +1,19 @@
-fetch("https://jsonplaceholder.typicode.com/users")
-    .then((response) => {
+const getAPI = async () => {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/users");
+        const data = await response.json();
+
         if (!response.ok) {
             throw new Error("Request error: " + response.status);
+        } else {
+            for (dataUser of data) {
+                const users = dataUser.name;
+                console.log(users);
+            }
         }
-        return response.json();
-    })
-    .then((users) => {
-        const names = users.map((user) => user.name);
-        const nameString = names.join(" ");
-        console.log(nameString);
-    })
-    .catch((error) => {
-        console.log("Error: " + error.message);
-    });
+    } catch (err) {
+        console.log("Something went wrong", err);
+    }
+};
+
+getAPI();
