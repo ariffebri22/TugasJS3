@@ -57,7 +57,7 @@ const bandaraData = [
 ];
 
 const getBandara = (bandara) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
             const maskapai = bandaraData.find((data) => data.bandara.toLowerCase() === bandara.toLowerCase());
             if (maskapai) {
